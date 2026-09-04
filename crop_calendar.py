@@ -15,6 +15,10 @@ dashboard identifies and displays crops by name only (e.g. "Maize", not
 "Maize - GH-0727"); the variety is still used internally to pick the right
 rows out of the sheet, it's just not shown to the user.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
 The user picks their sowing week directly as "SMW 1 (Jan 1 - Jan 7)" ...
 "SMW 52 (Dec 24 - Dec 31)" rather than a calendar date (a specific date adds
 a year that doesn't matter here and just has to be converted back to a week
@@ -25,6 +29,18 @@ The CWR figures themselves don't change -- a crop in its flowering week
 needs the same water whether sown in SMW 35 or SMW 40 -- only which calendar
 week (and therefore which rainfall climatology) that growth stage lines up
 with changes.
+<<<<<<< HEAD
+=======
+=======
+When the user picks an actual sowing date, we shift the whole profile: the
+crop's "Week 1" lands on the SMW the user actually sowed in, and every
+subsequent crop-week advances one calendar SMW from there (wrapping past
+week 52 back to week 1). The CWR figures themselves don't change -- a crop
+in its flowering week needs the same water whether it was sown in SMW 35 or
+SMW 40 -- only which calendar week (and therefore which rainfall
+climatology) that growth stage lines up with changes.
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
 
 For each resulting calendar SMW we pull the avg/min/max weekly rainfall from
 the full 1996-2025 (30-year) climatology for the selected taluk -- fixed,
@@ -35,7 +51,14 @@ avg rainfall < CWR  ->  Irrigation Required (shows the deficit, mm)
 avg rainfall >= CWR ->  No Irrigation Required
 """
 import re
+<<<<<<< HEAD
 import datetime
+=======
+<<<<<<< HEAD
+import datetime
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
 import pandas as pd
 
 import config
@@ -86,6 +109,10 @@ def available_crops() -> list:
     return [{"label": c, "value": c} for c in crops]
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
 # ---------------------------------------------------------------------------
 # SMW <-> calendar date-range labels, e.g. "SMW 1 (Jan 1 - Jan 7)"
 # ---------------------------------------------------------------------------
@@ -120,11 +147,34 @@ def build_crop_calendar(crop: str, taluk: str, sowing_smw: int) -> pd.DataFrame:
     stage, CWR, the taluk's 30-year rainfall climatology for that calendar
     week, and the irrigation advisory. sowing_smw is 1-52, as selected from
     the SMW dropdown."""
+<<<<<<< HEAD
+=======
+=======
+def _smw_from_date(sowing_date) -> int:
+    ts = pd.Timestamp(sowing_date)
+    doy = ts.dayofyear
+    return min(52, -(-doy // 7))  # ceil division, capped at 52
+
+
+def build_crop_calendar(crop: str, taluk: str, sowing_date) -> pd.DataFrame:
+    """The main entry point: returns one row per crop-week with the growth
+    stage, CWR, the taluk's 30-year rainfall climatology for that calendar
+    week, and the irrigation advisory."""
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
     profile = _CROP_DATA[_CROP_DATA["crop"] == crop].copy()
     profile = profile.sort_values("crop_week").reset_index(drop=True)
     variety = profile["variety"].iloc[0] if not profile.empty else None
 
+<<<<<<< HEAD
     sowing_smw = int(sowing_smw)
+=======
+<<<<<<< HEAD
+    sowing_smw = int(sowing_smw)
+=======
+    sowing_smw = _smw_from_date(sowing_date)
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
     wk_clim = dl.weekly_climatology(taluk, config.MIN_DATE, config.MAX_DATE).set_index("smw")
 
     rows = []
@@ -160,8 +210,18 @@ def build_crop_calendar(crop: str, taluk: str, sowing_smw: int) -> pd.DataFrame:
     out.attrs["crop"] = crop
     out.attrs["variety"] = variety
     out.attrs["taluk"] = taluk
+<<<<<<< HEAD
     out.attrs["sowing_smw"] = sowing_smw
     out.attrs["sowing_smw_label"] = smw_label(sowing_smw)
+=======
+<<<<<<< HEAD
+    out.attrs["sowing_smw"] = sowing_smw
+    out.attrs["sowing_smw_label"] = smw_label(sowing_smw)
+=======
+    out.attrs["sowing_date"] = str(sowing_date)
+    out.attrs["sowing_smw"] = sowing_smw
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
     return out
 
 

@@ -41,6 +41,16 @@ from plotly.colors import sample_colorscale
 # set the DASH_URL_PREFIX environment variable to that path (see README.md
 # "Deploying behind IIS") so Dash builds every asset/callback URL correctly.
 URL_PREFIX = os.environ.get("DASH_URL_PREFIX", "/")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+print("=" * 60)
+print("DASH_URL_PREFIX =", os.environ.get("DASH_URL_PREFIX"))
+print("URL_PREFIX      =", URL_PREFIX)
+print("=" * 60)
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
 if not URL_PREFIX.endswith("/"):
     URL_PREFIX += "/"
 
@@ -50,6 +60,13 @@ app = dash.Dash(
     title=config.APP_TITLE,
     suppress_callback_exceptions=True,
     requests_pathname_prefix=URL_PREFIX,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+    routes_pathname_prefix=URL_PREFIX,
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
 )
 server = app.server  # exposed for waitress / IIS (Phase 13)
 
@@ -507,6 +524,10 @@ crop_filters_bar = dbc.Card(
                         ),
                     ],
                     xs=12, sm=6, lg=2,
+<<<<<<< HEAD
+=======
+                    xs=12, sm=6, lg=3,
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
                 ),
                 dbc.Col(
                     [
@@ -519,6 +540,10 @@ crop_filters_bar = dbc.Card(
                         ),
                     ],
                     xs=12, sm=6, lg=2,
+<<<<<<< HEAD
+=======
+                    xs=12, sm=6, lg=3,
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
                 ),
                 dbc.Col(
                     [
@@ -543,6 +568,20 @@ crop_filters_bar = dbc.Card(
                         ),
                     ],
                     xs=12, sm=6, lg=4,
+<<<<<<< HEAD
+=======
+                        dbc.Label("Sowing Date", className="ctrl-label"),
+                        dcc.DatePickerSingle(
+                            id="sowing-date-picker",
+                            min_date_allowed=date(2000, 1, 1),
+                            max_date_allowed=date(2035, 12, 31),
+                            date=date(2025, 9, 25),
+                            display_format="YYYY-MM-DD",
+                            className="w-100",
+                        ),
+                    ),
+                    xs=12, sm=6, lg=2,
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
                 ),
                 dbc.Col(
                     [
@@ -1758,6 +1797,10 @@ def _crop_table_payload(cal: pd.DataFrame):
     State("crop-district-dd", "value"),
     State("crop-taluk-dd", "value"),
     State("crop-select-dd", "value"),
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
     State("sowing-smw-dd", "value"),
 )
 def update_crop_calendar(n_clicks, district, taluk, crop_value, sowing_smw):
@@ -1765,13 +1808,33 @@ def update_crop_calendar(n_clicks, district, taluk, crop_value, sowing_smw):
         raise dash.exceptions.PreventUpdate
 
     cal = cropcal.build_crop_calendar(crop_value, taluk, sowing_smw)
+<<<<<<< HEAD
+=======
+=======
+    State("sowing-date-picker", "date"),
+)
+def update_crop_calendar(n_clicks, district, taluk, crop_value, sowing_date):
+    if not crop_value or not taluk or not sowing_date:
+        raise dash.exceptions.PreventUpdate
+
+    cal = cropcal.build_crop_calendar(crop_value, taluk, sowing_date)
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
     summary = cropcal.crop_calendar_summary(cal)
     table_data, table_cols = _crop_table_payload(cal)
 
     crop_label = crop_value
     heading = (
         f"{crop_label}  |  District: {district}  |  Taluk: {taluk}  |  "
+<<<<<<< HEAD
         f"Sowing Week: {cal.attrs['sowing_smw_label']}"
+=======
+<<<<<<< HEAD
+        f"Sowing Week: {cal.attrs['sowing_smw_label']}"
+=======
+        f"Sowing Date: {sowing_date}  (SMW {cal.attrs['sowing_smw']})"
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
     )
 
     return (
@@ -1789,6 +1852,10 @@ def update_crop_calendar(n_clicks, district, taluk, crop_value, sowing_smw):
     State("crop-district-dd", "value"),
     State("crop-taluk-dd", "value"),
     State("crop-select-dd", "value"),
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
     State("sowing-smw-dd", "value"),
     prevent_initial_call=True,
 )
@@ -1800,6 +1867,22 @@ def download_crop_calendar(n_clicks, district, taluk, crop_value, sowing_smw):
     renamed = cal.rename(columns=dict(CROP_TABLE_COLUMN_MAP))
     crop_label = crop_value.replace(" ", "_").replace("/", "-")
     fname = f"{crop_label}_{taluk}_irrigation_calendar_SMW{sowing_smw}.csv"
+<<<<<<< HEAD
+=======
+=======
+    State("sowing-date-picker", "date"),
+    prevent_initial_call=True,
+)
+@_guard_download
+def download_crop_calendar(n_clicks, district, taluk, crop_value, sowing_date):
+    if not crop_value or not taluk or not sowing_date:
+        raise dash.exceptions.PreventUpdate
+    cal = cropcal.build_crop_calendar(crop_value, taluk, sowing_date)
+    renamed = cal.rename(columns=dict(CROP_TABLE_COLUMN_MAP))
+    crop_label = crop_value.replace(" ", "_").replace("/", "-")
+    fname = f"{crop_label}_{taluk}_irrigation_calendar_{sowing_date}.csv"
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
     return dcc.send_data_frame(renamed.to_csv, fname, index=False)
 
 

@@ -337,6 +337,10 @@ automatically:
 
 ---
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
 ## Memory footprint & how many concurrent users this can handle
 
 If you're hosting this anywhere with a RAM limit (Render's free tier is
@@ -386,6 +390,7 @@ process (or a host that periodically recycles workers) resets it -- but on
 a 512MB box it's one more reason not to run right at the edge for weeks at
 a time unmonitored.
 
+<<<<<<< HEAD
 **If deploying with gunicorn (Render, most Linux PaaS hosts) rather than
 Waitress**: every number above is *per worker process* -- gunicorn can run
 multiple worker processes, each with its own full copy of this app in
@@ -396,6 +401,8 @@ instance, stick to a single worker (`gunicorn app:server` with no
 still handled fine by gunicorn's own request threading, you just don't want
 N independent ~263MB copies competing for 512MB total.
 
+=======
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
 **Recommendation for "anyone in India can access this":**
 - **Render's free tier specifically** has two separate problems, not just
   RAM: it also spins the whole service down after ~15 minutes of no
@@ -417,6 +424,11 @@ N independent ~263MB copies competing for 512MB total.
 
 ---
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
 ## Troubleshooting
 
 - **Page spins/loads forever, with some 404s and/or 500s showing up**: this

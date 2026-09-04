@@ -30,18 +30,35 @@ def taluk_ranking(start_date, end_date) -> pd.DataFrame:
     years = dl.years_in_range(start_date, end_date)
     sub = dl._annual[dl._annual["year"].isin(years)]
     out = (
+<<<<<<< HEAD
         sub.groupby(["taluk", "district"], as_index=False, observed=True)["annual_rainfall"]
+=======
+<<<<<<< HEAD
+        sub.groupby(["taluk", "district"], as_index=False, observed=True)["annual_rainfall"]
+=======
+        sub.groupby(["taluk", "district"], as_index=False)["annual_rainfall"]
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
         .mean()
         .rename(columns={"annual_rainfall": "avg_annual_rainfall"})
         .sort_values("avg_annual_rainfall", ascending=False)
         .reset_index(drop=True)
     )
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
     # Small per-query result (112 rows) -- upcast from the source table's
     # memory-saving float32 to float64 *before* rounding. Rounding a float32
     # Series stays float32 and still shows binary-imprecision artifacts (e.g.
     # 1953.5999755859375 instead of 1953.6); upcasting first fixes it, since
     # float64 can represent the rounded decimal cleanly. Order matters here.
     out["avg_annual_rainfall"] = out["avg_annual_rainfall"].astype("float64").round(1)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+>>>>>>> d7e7f5a9f1617f0743e7f5e566e24bfb35b4aea7
     out["rank"] = out.index + 1
     return out
 
