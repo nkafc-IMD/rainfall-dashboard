@@ -14,7 +14,4 @@ waitress==3.0.2
 reportlab==4.4.10
 matplotlib==3.10.8
 Pillow==12.1.1
-<<<<<<< HEAD
-=======
-gunicorn
->>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
+
