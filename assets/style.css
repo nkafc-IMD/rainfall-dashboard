@@ -1,0 +1,430 @@
+:root {
+    --brand-blue: #1565ea;
+    --brand-blue-dark: #1148b0;
+    --navy: #1f4e79;
+    --accent-orange: #e07b1a;
+    --page-bg: #f2f5fa;
+}
+
+body {
+    background-color: var(--page-bg);
+}
+
+.app-container {
+    padding-top: 16px;
+}
+
+.app-header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: var(--page-bg);
+    padding-top: 16px;
+    margin-top: -16px;
+    padding-bottom: 2px;
+}
+
+/* ---------------------------------------------------------------- Navbar */
+.app-navbar {
+    background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-blue-dark) 100%) !important;
+    box-shadow: 0 2px 8px rgba(21,101,234,0.28);
+    border-radius: 10px;
+}
+
+.navbar-imd-logo {
+    object-fit: contain;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.35));
+    background: #ffffff;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.navbar-title-block {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 0 16px;
+}
+
+.navbar-org-title {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.3;
+}
+
+.navbar-subtitle {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+    margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+    .navbar-org-title { font-size: 0.95rem; }
+    .navbar-subtitle { font-size: 0.78rem; }
+    .navbar-imd-logo { height: 52px !important; }
+}
+
+/* ------------------------------------------------------------- Filters bar */
+.filters-bar-card, .quick-map-card, .kpi-card, .chart-card, .content-card {
+    border: none;
+    box-shadow: 0 1px 6px rgba(20,30,60,0.08);
+    border-radius: 12px;
+}
+
+.ctrl-label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.82rem;
+    margin-bottom: 2px;
+}
+
+.go-btn {
+    background-color: var(--brand-blue);
+    border-color: var(--brand-blue);
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.go-btn:hover {
+    background-color: var(--brand-blue-dark);
+    border-color: var(--brand-blue-dark);
+}
+
+.dl-btn {
+    border: 1px solid #d0d3d8;
+    font-weight: 500;
+    text-align: left;
+    border-radius: 8px;
+}
+
+/* --------------------------------------------------------------- Quick map */
+.quick-map-header {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.quick-map-header .fa-map-location-dot {
+    color: var(--brand-blue);
+}
+
+/* ------------------------------------------------------------------- KPIs */
+.kpi-card {
+    text-align: center;
+    padding: 6px 0;
+}
+
+.kpi-card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.kpi-card-label {
+    color: #777;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.kpi-card-value {
+    color: #1a1a2e;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+/* ------------------------------------------------------------------ Charts */
+.chart-card {
+    margin-bottom: 14px;
+}
+
+.chart-title {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.chart-desc {
+    color: #777;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.navbar-150-logo {
+    object-fit: contain;
+}
+
+/* --------------------------------------------------------- Top page nav */
+.page-nav-wrapper {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(20,30,60,0.08);
+    padding: 8px 12px;
+}
+
+.page-nav-list {
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.page-navlink {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    color: #444 !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 8px !important;
+    padding: 8px 16px !important;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.page-navlink:hover {
+    background-color: #eef4ff !important;
+}
+
+.page-navlink.active {
+    background-color: var(--brand-blue) !important;
+    color: #ffffff !important;
+}
+
+.page-nav-icon {
+    font-size: 1rem;
+}
+
+.page-nav-label {
+    white-space: nowrap;
+}
+
+/* -------------------------------------------------------------- Home page */
+.home-hero-card {
+    border: none;
+    box-shadow: 0 1px 6px rgba(20,30,60,0.08);
+    border-radius: 12px;
+    height: 100%;
+}
+
+.home-title {
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.home-body {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.home-secondary-btn {
+    border: 1px solid #d0d3d8;
+}
+
+.home-150-logo {
+    max-width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+}
+
+.home-feature-card {
+    border: none;
+    box-shadow: 0 1px 6px rgba(20,30,60,0.08);
+    border-radius: 12px;
+    height: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.home-feature-icon {
+    font-size: 1.8rem;
+    color: var(--brand-blue);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.home-feature-title {
+    color: #222;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.home-feature-body {
+    color: #666;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* ------------------------------------------------------------- Section nav */
+.section-nav-list {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(20,30,60,0.08);
+    padding: 10px;
+}
+
+.section-navlink {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    color: #444 !important;
+    font-weight: 500;
+    font-size: 0.88rem;
+    border-radius: 8px !important;
+    padding: 10px 12px !important;
+    margin-bottom: 4px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.section-navlink:hover {
+    background-color: #eef4ff !important;
+}
+
+.section-navlink.active {
+    background-color: var(--brand-blue) !important;
+    color: #ffffff !important;
+}
+
+.section-nav-icon {
+    width: 18px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.section-nav-label {
+    white-space: nowrap;
+}
+
+.section-content-area {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(20,30,60,0.08);
+    padding: 18px;
+    min-height: 300px;
+}
+
+/* -------------------------------------------------------------- Panels */
+.irrigation-heading {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.irrigation-panel, .analytics-panel, .statistics-panel, .advanced-panel,
+.spatial-panel, .download-panel, .feedback-panel {
+    padding-top: 4px;
+}
+
+.ranking-subtitle {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 6px;
+}
+
+.stats-note {
+    color: #777;
+    font-size: 0.82rem;
+    margin-bottom: 14px;
+}
+
+.legend-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 0.82rem;
+    color: #444;
+}
+
+.legend-chip {
+    display: inline-flex;
+    align-items: center;
+}
+
+.dl-row {
+    padding: 12px 6px;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+}
+
+.dl-row-title {
+    font-weight: 600;
+    color: #333;
+}
+
+.dl-row-desc {
+    color: #777;
+    font-size: 0.82rem;
+}
+
+.feedback-question-list {
+    color: #444;
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+/* -------------------------------------------------------------- Crop Irrigation Calendar */
+.crop-glossary {
+    background: #f8f9fb;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+}
+
+.crop-glossary-list {
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+
+.crop-glossary-list li {
+    color: #444;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.crop-footnote {
+    color: #777;
+    font-size: 0.82rem;
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+/* -------------------------------------------------------------- Contact Us page */
+.contact-details {
+    background: #f8f9fb;
+    border-radius: 10px;
+    padding: 18px 20px;
+    max-width: 560px;
+}
+
+.contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.contact-row:last-child {
+    margin-bottom: 0;
+}
+
+.contact-icon {
+    color: var(--brand-blue);
+    font-size: 1.1rem;
+    margin-top: 2px;
+}
+
+/* -------------------------------------------------------------- Footer */
+.app-footer {
+    text-align: center;
+    color: #888;
+    font-size: 0.8rem;
+    padding: 18px 0 10px 0;
+}
