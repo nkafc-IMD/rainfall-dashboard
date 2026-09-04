@@ -517,11 +517,8 @@ crop_filters_bar = dbc.Card(
                             clearable=False,
                         ),
                     ],
-<<<<<<< HEAD
                     xs=12, sm=6, lg=2,
-=======
                     xs=12, sm=6, lg=3,
->>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
                 ),
                 dbc.Col(
                     [
@@ -533,11 +530,8 @@ crop_filters_bar = dbc.Card(
                             clearable=False,
                         ),
                     ],
-<<<<<<< HEAD
                     xs=12, sm=6, lg=2,
-=======
                     xs=12, sm=6, lg=3,
->>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
                 ),
                 dbc.Col(
                     [
@@ -553,7 +547,6 @@ crop_filters_bar = dbc.Card(
                 ),
                 dbc.Col(
                     [
-<<<<<<< HEAD
                         dbc.Label("Sowing Week (SMW)", className="ctrl-label"),
                         dcc.Dropdown(
                             id="sowing-smw-dd",
@@ -563,7 +556,6 @@ crop_filters_bar = dbc.Card(
                         ),
                     ],
                     xs=12, sm=6, lg=4,
-=======
                         dbc.Label("Sowing Date", className="ctrl-label"),
                         dcc.DatePickerSingle(
                             id="sowing-date-picker",
@@ -575,7 +567,6 @@ crop_filters_bar = dbc.Card(
                         ),
                     ],
                     xs=12, sm=6, lg=2,
->>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
                 ),
                 dbc.Col(
                     [
