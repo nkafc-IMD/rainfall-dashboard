@@ -63,18 +63,25 @@ def weekly_climatology(taluk: str, start_date, end_date) -> pd.DataFrame:
     years = years_in_range(start_date, end_date)
     sub = _weekly[(_weekly["taluk"] == taluk) & (_weekly["year"].isin(years))]
     out = (
+<<<<<<< HEAD
         sub.groupby("smw", as_index=False, observed=True)["weekly_rainfall"]
+=======
+        sub.groupby("smw", as_index=False)["weekly_rainfall"]
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
         .agg(avg_rain="mean", min_rain="min", max_rain="max")
         .sort_values("smw")
     )
     # ensure all 52 weeks present even if some are missing from the slice
     out = out.set_index("smw").reindex(range(1, 53)).fillna(0).reset_index()
+<<<<<<< HEAD
     # Small per-query result (52 rows) -- upcast from the source table's
     # memory-saving float32 to plain float64 so rounded values display
     # cleanly (e.g. "39.9") instead of leaking float32 binary imprecision
     # (e.g. "39.90000152587890625") into any table/JSON built from this.
     for col in ("avg_rain", "min_rain", "max_rain"):
         out[col] = out[col].astype("float64").round(1)
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
     return out
 
 
@@ -92,9 +99,12 @@ def weekly_by_year_pivot(taluk: str, start_date, end_date) -> pd.DataFrame:
     pivot[avg_label] = pivot[years].mean(axis=1)
     pivot = pivot.fillna(0).reset_index().rename(columns={"smw": "SMW"})
     pivot.columns = [str(c) for c in pivot.columns]
+<<<<<<< HEAD
     for col in pivot.columns:
         if col != "SMW":
             pivot[col] = pivot[col].astype("float64").round(1)
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
     return pivot
 
 
@@ -105,13 +115,20 @@ def monthly_climatology(taluk: str, start_date, end_date) -> pd.DataFrame:
     years = years_in_range(start_date, end_date)
     sub = _monthly[(_monthly["taluk"] == taluk) & (_monthly["year"].isin(years))]
     out = (
+<<<<<<< HEAD
         sub.groupby("month", as_index=False, observed=True)["monthly_rainfall"]
+=======
+        sub.groupby("month", as_index=False)["monthly_rainfall"]
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
         .mean()
         .rename(columns={"monthly_rainfall": "avg_rain"})
         .sort_values("month")
     )
     out = out.set_index("month").reindex(range(1, 13)).fillna(0).reset_index()
+<<<<<<< HEAD
     out["avg_rain"] = out["avg_rain"].astype("float64").round(1)
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
     return out
 
 
@@ -127,9 +144,12 @@ def monthly_by_year_pivot(taluk: str, start_date, end_date) -> pd.DataFrame:
     pivot[avg_label] = pivot[years].mean(axis=1)
     pivot = pivot.fillna(0).reset_index().rename(columns={"month": "Month"})
     pivot.columns = [str(c) for c in pivot.columns]
+<<<<<<< HEAD
     for col in pivot.columns:
         if col != "Month":
             pivot[col] = pivot[col].astype("float64").round(1)
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
     return pivot
 
 
@@ -141,16 +161,24 @@ def annual_average(taluk: str, start_date, end_date) -> float:
     sub = _annual[(_annual["taluk"] == taluk) & (_annual["year"].isin(years))]
     if sub.empty:
         return 0.0
+<<<<<<< HEAD
     return round(float(sub["annual_rainfall"].astype("float64").mean()), 1)
+=======
+    return float(sub["annual_rainfall"].mean())
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
 
 
 def annual_series(taluk: str, start_date, end_date) -> pd.DataFrame:
     """Yearly totals (for trend charts), not averaged -- one row per year."""
     years = years_in_range(start_date, end_date)
     sub = _annual[(_annual["taluk"] == taluk) & (_annual["year"].isin(years))]
+<<<<<<< HEAD
     out = sub.sort_values("year")[["year", "annual_rainfall", "rainy_days"]].copy()
     out["annual_rainfall"] = out["annual_rainfall"].astype("float64").round(1)
     return out
+=======
+    return sub.sort_values("year")[["year", "annual_rainfall", "rainy_days"]]
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
 
 
 def annual_breakdown_with_average(taluk: str, start_date, end_date) -> pd.DataFrame:
@@ -179,9 +207,13 @@ def daily_series(taluk: str, start_date, end_date) -> pd.DataFrame:
         & (_daily["date"] >= pd.Timestamp(start_date))
         & (_daily["date"] <= pd.Timestamp(end_date))
     ]
+<<<<<<< HEAD
     out = sub.sort_values("date")[["date", "rainfall"]].copy()
     out["rainfall"] = out["rainfall"].astype("float64").round(1)
     return out
+=======
+    return sub.sort_values("date")[["date", "rainfall"]]
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
 
 
 # ---------------------------------------------------------------------------
@@ -190,8 +222,12 @@ def daily_series(taluk: str, start_date, end_date) -> pd.DataFrame:
 def map_values(start_date, end_date) -> pd.DataFrame:
     years = years_in_range(start_date, end_date)
     sub = _annual[_annual["year"].isin(years)]
+<<<<<<< HEAD
     out = sub.groupby(["taluk", "district"], as_index=False, observed=True)["annual_rainfall"].mean()
     out["annual_rainfall"] = out["annual_rainfall"].astype("float64").round(1)
+=======
+    out = sub.groupby(["taluk", "district"], as_index=False)["annual_rainfall"].mean()
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
     return out
 
 

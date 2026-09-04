@@ -15,6 +15,13 @@ import json
 import zipfile
 
 import geopandas as gpd
+<<<<<<< HEAD
+=======
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
 from reportlab.lib import colors as rl_colors
@@ -29,6 +36,7 @@ import data_loader as dl
 NAVY = "#1f4e79"
 ACCENT = "#e07b1a"
 
+<<<<<<< HEAD
 # Built from the GeoJSON dict data_loader already parsed at import time,
 # rather than gpd.read_file()-ing the same file again from disk -- that
 # redundant second parse cost ~36MB of resident memory for no benefit,
@@ -54,13 +62,21 @@ def _get_plt():
         import matplotlib.pyplot as plt
         _plt = plt
     return _plt
+=======
+_GDF = gpd.read_file(config.TALUKS_GEOJSON)
+if "KGISTalukN" in _GDF.columns:
+    _GDF = _GDF.rename(columns={"KGISTalukN": "taluk", "DISTRICT": "district"})
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
 
 
 # ---------------------------------------------------------------------------
 # Chart PNGs (matplotlib, returns PNG bytes)
 # ---------------------------------------------------------------------------
 def _fig_to_png_bytes(fig) -> bytes:
+<<<<<<< HEAD
     plt = _get_plt()
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
     buf = io.BytesIO()
     fig.savefig(buf, format="png", dpi=150, bbox_inches="tight")
     plt.close(fig)
@@ -69,7 +85,10 @@ def _fig_to_png_bytes(fig) -> bytes:
 
 
 def render_weekly_png(taluk: str, start_date, end_date) -> bytes:
+<<<<<<< HEAD
     plt = _get_plt()
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
     wk = dl.weekly_climatology(taluk, start_date, end_date)
     fig, ax = plt.subplots(figsize=(7, 3.2))
     ax.plot(wk["smw"], wk["avg_rain"], color="#2e7d32", linewidth=2)
@@ -81,7 +100,10 @@ def render_weekly_png(taluk: str, start_date, end_date) -> bytes:
 
 
 def render_monthly_png(taluk: str, start_date, end_date) -> bytes:
+<<<<<<< HEAD
     plt = _get_plt()
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
     mo = dl.monthly_climatology(taluk, start_date, end_date)
     fig, ax = plt.subplots(figsize=(7, 3.2))
     ax.bar([f"{m:02d}" for m in mo["month"]], mo["avg_rain"], color="#7ec8e3")
@@ -94,7 +116,10 @@ def render_monthly_png(taluk: str, start_date, end_date) -> bytes:
 
 def render_trend_png(taluk: str, start_date, end_date) -> bytes:
     import analytics as an
+<<<<<<< HEAD
     plt = _get_plt()
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
     tr = an.rainfall_trend(taluk, start_date, end_date)
     fig, ax = plt.subplots(figsize=(7, 3.2))
     ax.bar(tr["year"], tr["annual_rainfall"], color="#7ec8e3", label="Annual Rainfall")
@@ -111,7 +136,10 @@ def render_trend_png(taluk: str, start_date, end_date) -> bytes:
 # Map PNG (matplotlib + geopandas -- mirrors the sidebar Leaflet map)
 # ---------------------------------------------------------------------------
 def render_map_png(district: str, selected_taluk: str) -> bytes:
+<<<<<<< HEAD
     plt = _get_plt()
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
     sub = _GDF[_GDF["district"] == district]
     fig, ax = plt.subplots(figsize=(6, 6))
     sub.plot(ax=ax, color="#ffe8c7", edgecolor="#8a5a1e", linewidth=1)
@@ -129,7 +157,10 @@ def render_map_png(district: str, selected_taluk: str) -> bytes:
 def render_region_map_png(color_map: dict, title: str) -> bytes:
     """Whole-region (112 taluk) static map, used by the Phase 6 spatial tab
     if the user wants a PNG of the ranking/zones/hotspot map."""
+<<<<<<< HEAD
     plt = _get_plt()
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
     gdf = _GDF.copy()
     gdf["_color"] = gdf["taluk"].map(color_map).fillna("#e0e0e0")
     fig, ax = plt.subplots(figsize=(7, 7))

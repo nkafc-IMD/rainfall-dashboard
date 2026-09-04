@@ -322,6 +322,7 @@ where reaching for a dropdown is slower than just tapping the map.
 
 ## Corrections applied
 
+<<<<<<< HEAD
 - **Memory footprint cut by ~33% (395MB -> 263MB idle)** for low-RAM hosts
   like Render's free tier. Full breakdown, measured numbers, and per-request
   costs are in `DEPLOYMENT.md`'s new "Memory footprint & how many concurrent
@@ -351,6 +352,8 @@ where reaching for a dropdown is slower than just tapping the map.
   portable manual formatting instead, and audited the rest of the codebase
   for the same pattern (nothing else affected).
 
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
 - **Weekly/Monthly Excel sheets now show a year-by-year breakdown.** Select,
   say, 2000-2002 in the sidebar and the `Weekly_SMW` sheet's columns are now
   `SMW | 2000 | 2001 | 2002 | Average (2000-2002)` (52 rows, one per SMW);

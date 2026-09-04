@@ -337,6 +337,7 @@ automatically:
 
 ---
 
+<<<<<<< HEAD
 ## Memory footprint & how many concurrent users this can handle
 
 If you're hosting this anywhere with a RAM limit (Render's free tier is
@@ -407,6 +408,8 @@ a time unmonitored.
 
 ---
 
+=======
+>>>>>>> a673546b8c4bf8179612c777b424c9ca88b038af
 ## Troubleshooting
 
 - **Page spins/loads forever, with some 404s and/or 500s showing up**: this
