@@ -565,7 +565,7 @@ crop_filters_bar = dbc.Card(
                             display_format="YYYY-MM-DD",
                             className="w-100",
                         ),
-                    ],
+                    ),
                     xs=12, sm=6, lg=2,
                 ),
                 dbc.Col(
